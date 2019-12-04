@@ -10,7 +10,10 @@ public class CreateAnAccountFormPage extends BasePageObject {
 	public CreateAnAccountFormPage(){
 		PageFactory.initElements(driver,this);
 	}
-
+	
+	@FindBy(css = "h3[class='page-subheading']")
+	private WebElement yourPersonalInformationSubHeading;
+	
 	@FindBy (css = "div[id='uniform-id_gender1']")
 	private WebElement mrRadioButton;
 	
@@ -41,12 +44,6 @@ public class CreateAnAccountFormPage extends BasePageObject {
 	@FindBy(css = "input[id='lastname']")
 	private WebElement addressLastName;
 	
-	@FindBy(css = "input[name='confirmpassword']")
-	private WebElement confirmPassword;
-	
-	@FindBy(css = "button[type='submitAccount']")
-	private WebElement registerButton;
-	
 	@FindBy(css = "input[id='address1']")
 	private WebElement address;
 	
@@ -62,8 +59,12 @@ public class CreateAnAccountFormPage extends BasePageObject {
 	@FindBy(css = "select[id='phone_mobile']")
 	private WebElement mobilePhone;
 	
-	@FindBy(css = "h3[class='page-subheading']")
-	private WebElement yourPersonalInformationSubHeading;
+	@FindBy(css = "button[type='submitAccount']")
+	private WebElement registerButton;
+	
+	public void mrRadioButtonClick(){
+		mrRadioButton.click();
+	}
 	
 	public void firstNameProvide(String str){
 		firstName.sendKeys(str);
@@ -73,24 +74,23 @@ public class CreateAnAccountFormPage extends BasePageObject {
 		lastName.sendKeys(str);
 	}
 	
-	public void emailProvide(String str){
-		email.sendKeys(str);
-	}
-	
 	public void passwordProvide(String str){
 		password.sendKeys(str);
 	}
 	
-	public void confirmPasswordProvide(String str){
-		confirmPassword.sendKeys(str);
+	public void dayOfBirthSelect(int day){
+		Select dropdown = new Select(dayOfBirth);
+		dropdown.selectByValue(Integer.toString(day));
 	}
 	
-	public void registerButtonClick(){
-		registerButton.click();
+	public void monthOfBirthSelect(int month){
+		Select dropdown = new Select(monthOfBirth);
+		dropdown.selectByValue(Integer.toString(month));
 	}
 	
-	public void mrRadioButtonClick(){
-		mrRadioButton.click();
+	public void yearOfBirthSelect(int year){
+		Select dropdown = new Select(yearOfBirth);
+		dropdown.selectByValue(Integer.toString(year));
 	}
 	
 	public void addressFirstNameProvide(String str){
@@ -114,21 +114,6 @@ public class CreateAnAccountFormPage extends BasePageObject {
 		dropdown.selectByVisibleText(stateName);
 	}
 	
-	public void dayOfBirthSelect(int day){
-		Select dropdown = new Select(dayOfBirth);
-		dropdown.selectByValue(Integer.toString(day));
-	}
-	
-	public void monthOfBirthSelect(int month){
-		Select dropdown = new Select(monthOfBirth);
-		dropdown.selectByValue(Integer.toString(month));
-	}
-	
-	public void yearOfBirthSelect(int year){
-		Select dropdown = new Select(yearOfBirth);
-		dropdown.selectByValue(Integer.toString(year));
-	}
-	
 	public void zipCodeProvide(int zipNumber){
 		zipCode.sendKeys(Integer.toString(zipNumber));
 	}
@@ -143,5 +128,9 @@ public class CreateAnAccountFormPage extends BasePageObject {
 	
 	public WebElement getYourPersonalInformationSubHeading() {
 		return yourPersonalInformationSubHeading;
+	}
+	
+	public void registerButtonClick(){
+		registerButton.click();
 	}
 }
