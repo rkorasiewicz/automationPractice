@@ -1,0 +1,8 @@
+PageObjects\MyAccountPage.class
+PageObjects\MainPage.class
+PageObjects\LoginPage.class
+PageObjects\BasePageObject.class
+Tests\FindHotelForFamillyWithThreePeople.class
+PageObjects\RegisterPage.class
+Tests\Utilities.class
+Tests\BaseTest.class
