@@ -1,9 +1,8 @@
 package Tests;
 
-import PageObjects.LoginPage;
+import PageObjects.AuthenticationPage;
 import PageObjects.MainPage;
-import PageObjects.MyAccountPage;
-import PageObjects.RegisterPage;
+import PageObjects.CreateAnAccountFormPage;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -12,6 +11,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,24 +29,31 @@ public class BaseTest {
 	
 	public static WebDriver driver;
 	private MainPage mp;
-	private RegisterPage rp;
-	private MyAccountPage map;
-	private Utilities utilities;
-	private LoginPage lp;
+	private CreateAnAccountFormPage caafp;
+	private AuthenticationPage ap;
+	private Utilities utillities = new Utilities();
 	
-	private String name = "Adam";
-	private String lastName = "Bondar";
-	private String phone = "123456789";
-	private String email = "1khalid-l7ob3@calfocus.com";
-	private String password = "dwertyksa34!";
+	private String email = getRandomEmail()+"@o2.pl";
+	private String firstName = "Marian";
+	private String lastName = "Kowalski";
+	private String password = "testPassword";
+	private String address = "Boston Street, 54, ST Holding Company";
+	private String city = "Chicago";
+	private String stateName = "Kansas";
+	private int dayOfBirth = 2;
+	private int monthOfBirth = 5;
+	private int yearOfBirth = 1988;
+	private int zipCode = 00011;
+	private int mobilePhone = 123456789;
+	
 	private static final Logger logger = Logger.getLogger(BaseTest.class.getName());
 	
 	public BaseTest() {
 	}
 	
 	public static WebDriver setUpBrowser() {
-		Utilities util = new Utilities();
-		System.setProperty("webdriver.chrome.driver", util.getChromePath());
+		Utilities utilities = new Utilities();
+		System.setProperty("webdriver.chrome.driver", utilities.getChromePath());
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -65,14 +72,39 @@ public class BaseTest {
 		return randomEmail;
 	}
 	
-	public void registration () throws IOException {
+	public void registration() throws IOException {
 		mp = new MainPage();
-		rp = new RegisterPage();
-		map = new MyAccountPage();
-
-		mp.myAccountButtonClick();
-		mp.signUpButtonClick();
+		caafp = new CreateAnAccountFormPage();
+		ap = new AuthenticationPage();
 		
+		mp.signUpButtonClick();
+		assertEquals("AUTHENTICATION", ap.getAuthenticationHeader());
+		
+		ap.emailProvide(email);
+		ap.createAccountButtonClick();
+		
+		/*WebDriverWait wait = new WebDriverWait(driver,10);
+		wait.until(ExpectedConditions.visibilityOf(caafp.getYourPersonalInformationSubHeading()));
+		assertEquals("YOUR PERSONAL INFORMATION", caafp.yourPersonalInformationSubHeadingRead());
+		*/
+		
+		caafp.mrRadioButtonClick();
+		caafp.firstNameProvide(firstName);
+		caafp.lastNameProvide(lastName);
+		caafp.passwordProvide(password);
+		caafp.dayOfBirthSelect(dayOfBirth);
+		caafp.monthOfBirthSelect(monthOfBirth);
+		caafp.yearOfBirthSelect(yearOfBirth);
+		caafp.addressFirstNameProvide(firstName);
+		caafp.addressLastNameProvide(lastName);
+		caafp.addressProvide(address);
+		caafp.cityProvide(city);
+		caafp.stateNameSelectFromList(stateName);
+		caafp.zipCodeProvide(zipCode);
+		caafp.mobilePhoneProvide(mobilePhone);
+		caafp.registerButtonClick();
+	}
+		/*
 		assertEquals("Register", driver.getTitle());
 		logger.info("Start providing data to registration form");
 		rp.firstNameProvide(name);
@@ -93,7 +125,7 @@ public class BaseTest {
 	
 	public void login() throws IOException {
 		mp = new MainPage();
-		lp = new LoginPage();
+		lp = new AuthenticationPage();
 		
 		mp.myAccountButtonClick();
 		mp.loginButtonClick();
@@ -106,61 +138,61 @@ public class BaseTest {
 		
 		assertEquals("Login", driver.getTitle());
 	}
-	
-	public void setValuesInExcel(String fieldName, String valueToBeSaved) throws IOException {
-		File file = new File(utilities.getDataForTestExecutingPath());
-		FileInputStream fis = new FileInputStream(file);
-		Workbook credentials = null;
-		String fileExtensionName = file.getName().substring(file.getName().indexOf("."));
-		if (fileExtensionName.equalsIgnoreCase(".xlsx")){
-			credentials = new XSSFWorkbook(fis);
-		}
-		if (fileExtensionName.equalsIgnoreCase(".xls")) {
-			credentials = new HSSFWorkbook(fis);
-		}
-		Sheet credentialsSheet = credentials.getSheet("Registration");
-		
-		int rowCount = credentialsSheet.getLastRowNum() - credentialsSheet.getFirstRowNum();
-		for (int i = 0; i < rowCount + 1; i++) {
-			Row row = credentialsSheet.getRow(i);
-			for (int j = 0; j < row.getLastCellNum(); j++) {
-				if (row.getCell(j).getStringCellValue().equalsIgnoreCase(fieldName)) {
-					row.getCell(j + 1).setCellValue(valueToBeSaved);
+	*/
+		public void setValuesInExcel (String fieldName, String valueToBeSaved) throws IOException {
+			File file = new File(utillities.getDataForTestExecutingPath());
+			FileInputStream fis = new FileInputStream(file);
+			Workbook credentials = null;
+			String fileExtensionName = file.getName().substring(file.getName().indexOf("."));
+			if (fileExtensionName.equalsIgnoreCase(".xlsx")) {
+				credentials = new XSSFWorkbook(fis);
+			}
+			if (fileExtensionName.equalsIgnoreCase(".xls")) {
+				credentials = new HSSFWorkbook(fis);
+			}
+			Sheet credentialsSheet = credentials.getSheet("Registration");
+			
+			int rowCount = credentialsSheet.getLastRowNum() - credentialsSheet.getFirstRowNum();
+			for (int i = 0; i < rowCount + 1; i++) {
+				Row row = credentialsSheet.getRow(i);
+				for (int j = 0; j < row.getLastCellNum(); j++) {
+					if (row.getCell(j).getStringCellValue().equalsIgnoreCase(fieldName)) {
+						row.getCell(j + 1).setCellValue(valueToBeSaved);
+					}
 				}
 			}
+			FileOutputStream fileOut = new FileOutputStream(utillities.getDataForTestExecutingPath());
+			credentials.write(fileOut);
+			fileOut.close();
 		}
-		FileOutputStream fileOut = new FileOutputStream(utilities.getDataForTestExecutingPath());
-		credentials.write(fileOut);
-		fileOut.close();
-	}
-	
-	public String getValuesFromExcel(String fieldName, String sheetName) throws IOException {
-		String answer = "";
-		DataFormatter dataFormatter = new DataFormatter();
-		File file = new File(utilities.getDataForTestExecutingPath());
-		FileInputStream fis = new FileInputStream(file);
-		Workbook credentials = null;
-		String fileExtensionName = file.getName().substring(file.getName().indexOf("."));
-		if (fileExtensionName.equalsIgnoreCase(".xlsx")){
-			credentials = new XSSFWorkbook( fis );
-		}
-		if (fileExtensionName.equalsIgnoreCase(".xls")){
-			credentials = new HSSFWorkbook(fis);
-		}
-		Sheet credentialsSheet = credentials.getSheet(sheetName);
 		
-		int rowCount = credentialsSheet.getLastRowNum() - credentialsSheet.getFirstRowNum();
-		for (int i = 0; i < rowCount + 1; i++) {
-			Row row = credentialsSheet.getRow(i);
-			for (int j = 0; j < row.getLastCellNum(); j++){
-				String formatted = dataFormatter.formatCellValue(row.getCell(j));
-				String formattedCell = dataFormatter.formatCellValue(row.getCell(j+1));
-				if (formatted.equals(fieldName)) {
-					answer = formattedCell;
+		public String getValuesFromExcel (String fieldName, String sheetName) throws IOException {
+			String answer = "";
+			DataFormatter dataFormatter = new DataFormatter();
+			File file = new File(utillities.getDataForTestExecutingPath());
+			FileInputStream fis = new FileInputStream(file);
+			Workbook credentials = null;
+			String fileExtensionName = file.getName().substring(file.getName().indexOf("."));
+			if (fileExtensionName.equalsIgnoreCase(".xlsx")) {
+				credentials = new XSSFWorkbook(fis);
+			}
+			if (fileExtensionName.equalsIgnoreCase(".xls")) {
+				credentials = new HSSFWorkbook(fis);
+			}
+			Sheet credentialsSheet = credentials.getSheet(sheetName);
+			
+			int rowCount = credentialsSheet.getLastRowNum() - credentialsSheet.getFirstRowNum();
+			for (int i = 0; i < rowCount + 1; i++) {
+				Row row = credentialsSheet.getRow(i);
+				for (int j = 0; j < row.getLastCellNum(); j++) {
+					String formatted = dataFormatter.formatCellValue(row.getCell(j));
+					String formattedCell = dataFormatter.formatCellValue(row.getCell(j + 1));
+					if (formatted.equals(fieldName)) {
+						answer = formattedCell;
+					}
 				}
 			}
+			return answer;
 		}
-		return answer;
 	}
-	
-}
+

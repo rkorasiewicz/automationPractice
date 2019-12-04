@@ -10,26 +10,26 @@ public class MainPage extends BasePageObject {
 		PageFactory.initElements(driver,this);
 	}
 	
-	@FindBy(css = "div[class='dropdown dropdown-login dropdown-tab']")
-	private WebElement myAccountButton;
+	//@FindBy(css = "div[class='dropdown dropdown-login dropdown-tab']")
+	//private WebElement myAccountButton;
 	
-	@FindBy(linkText = "Sign Up")
+	@FindBy(css = "a[class='login']")
 	private WebElement signUpButton;
 	
-	@FindBy(linkText = "Login")
-	private WebElement loginButton;
+	//@FindBy(linkText = "Login")
+	//private WebElement loginButton;
 	
-	public void myAccountButtonClick(){
-		myAccountButton.click();
-	}
+	//public void myAccountButtonClick(){
+	//	myAccountButton.click();
+	//}
 	
 	public void signUpButtonClick(){
 		signUpButton.click();
 	}
 	
-	public void loginButtonClick(){
-		loginButton.click();
-	}
+	//public void loginButtonClick(){
+	//	loginButton.click();
+	//}
 	
 	
 }
