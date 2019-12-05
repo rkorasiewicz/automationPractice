@@ -11,9 +11,6 @@ public class CreateAnAccountFormPage extends BasePageObject {
 		PageFactory.initElements(driver,this);
 	}
 	
-	@FindBy(css = "h3[class='page-subheading']")
-	private WebElement yourPersonalInformationSubHeading;
-	
 	@FindBy (css = "div[id='uniform-id_gender1']")
 	private WebElement mrRadioButton;
 	
@@ -121,15 +118,7 @@ public class CreateAnAccountFormPage extends BasePageObject {
 	public void mobilePhoneProvide(int mobileNumber){
 		mobilePhone.sendKeys(Integer.toString(mobileNumber));
 	}
-	
-	public String yourPersonalInformationSubHeadingRead() {
-		return yourPersonalInformationSubHeading.getText();
-	}
-	
-	public WebElement getYourPersonalInformationSubHeading() {
-		return yourPersonalInformationSubHeading;
-	}
-	
+
 	public void registerButtonClick(){
 		registerButton.click();
 	}

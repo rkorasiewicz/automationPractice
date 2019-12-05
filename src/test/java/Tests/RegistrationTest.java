@@ -19,7 +19,6 @@ public class RegistrationTest extends BaseTest {
 	private MainPage mp;
 	private CreateAnAccountFormPage caafp;
 	private AuthenticationPage ap;
-	private Utilities utillities;
 	private MyAccountPage map;
 	
 	private String firstName = "Marian";
@@ -32,21 +31,25 @@ public class RegistrationTest extends BaseTest {
 		driver = setUpBrowser();
 		driver.get(utilities.getMainPagePath());
 		Assert.assertEquals("My Store", driver.getTitle());
+		logger.info("Set up is done");
 	}
 	
 	@Test
-	public void verifyUserRegistration() throws IOException {
+	public void verifyUserRegistration() {
 			mp = new MainPage();
 			caafp = new CreateAnAccountFormPage();
 			ap = new AuthenticationPage();
 			map = new MyAccountPage();
 			
+			logger.info("Signing in");
 			mp.signUpButtonClick();
 			assertEquals("AUTHENTICATION", ap.getAuthenticationHeader());
 			
+			logger.info("Creating new account");
 			ap.emailProvide(getRandomEmail() + "@o2.pl");
 			ap.createAccountButtonClick();
 			
+			logger.info("Providing data to form");
 			caafp.mrRadioButtonClick();
 			caafp.firstNameProvide(firstName);
 			caafp.lastNameProvide(lastName);
@@ -61,14 +64,16 @@ public class RegistrationTest extends BaseTest {
 			caafp.stateNameSelectFromList("Kansas");
 			caafp.zipCodeProvide(99501);
 			caafp.mobilePhoneProvide(123456789);
+			logger.info("Data has been provided");
 			caafp.registerButtonClick();
 			
+			logger.info("Moving to 'my account' page");
 			assertTrue(map.getCustomerAccount().isDisplayed());
 		}
 		
 	@After
 	public void cleanUp(){
-		logger.info("Test is ending");
+		logger.info("Test is done");
 		driver.quit();
 	}
 }

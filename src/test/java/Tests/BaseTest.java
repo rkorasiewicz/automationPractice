@@ -16,15 +16,18 @@ public class BaseTest {
 	}
 	
 	public static WebDriver setUpBrowser() {
+		logger.info("Starting browser set up");
 		Utilities utilities = new Utilities();
 		System.setProperty("webdriver.chrome.driver", utilities.getChromePath());
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		logger.info("Browser has been set up");
 		return driver;
 	}
 	
-	protected String getRandomEmail() {
+	public String getRandomEmail() {
+		logger.info("Generating random email base");
 		String RANDOMCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		StringBuilder salt = new StringBuilder();
 		Random rnd = new Random();
@@ -33,6 +36,7 @@ public class BaseTest {
 			salt.append(RANDOMCHARS.charAt(index));
 		}
 		String randomEmail = salt.toString();
+		logger.info("Random email base has been generated");
 		return randomEmail;
 	}
 }
