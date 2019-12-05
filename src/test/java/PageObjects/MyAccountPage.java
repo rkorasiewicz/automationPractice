@@ -13,7 +13,14 @@ public class MyAccountPage extends BasePageObject {
 	@FindBy(css = "a[title='View my customer account']")
 	private WebElement customerAccount;
 	
+	@FindBy(xpath = "(//a[@title='T-shirts'])[2]")
+	private WebElement tShirts;
+	
 	public WebElement getCustomerAccount() {
 		return customerAccount;
+	}
+	
+	public void tShirtsClick(){
+		tShirts.click();
 	}
 }

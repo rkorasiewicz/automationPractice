@@ -1,14 +1,14 @@
 package Tests;
 
-import PageObjects.AuthenticationPage;
+import PageObjects.LoginPage;
 import PageObjects.CreateAnAccountFormPage;
-import PageObjects.MainPage;
+import PageObjects.MyStorePage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import PageObjects.MyAccountPage;
-import java.io.IOException;
+
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,9 +16,9 @@ import static org.junit.Assert.assertTrue;
 public class RegistrationTest extends BaseTest {
 	
 	private Utilities utilities;
-	private MainPage mp;
+	private MyStorePage msp;
 	private CreateAnAccountFormPage caafp;
-	private AuthenticationPage ap;
+	private LoginPage lp;
 	private MyAccountPage map;
 	
 	private String firstName = "Marian";
@@ -36,18 +36,18 @@ public class RegistrationTest extends BaseTest {
 	
 	@Test
 	public void verifyUserRegistration() {
-			mp = new MainPage();
+			msp = new MyStorePage();
 			caafp = new CreateAnAccountFormPage();
-			ap = new AuthenticationPage();
+			lp = new LoginPage();
 			map = new MyAccountPage();
 			
 			logger.info("Signing in");
-			mp.signUpButtonClick();
-			assertEquals("AUTHENTICATION", ap.getAuthenticationHeader());
+			msp.signUpButtonClick();
+			assertEquals("AUTHENTICATION", lp.getAuthenticationHeader());
 			
 			logger.info("Creating new account");
-			ap.emailProvide(getRandomEmail() + "@o2.pl");
-			ap.createAccountButtonClick();
+			lp.emailProvide(getRandomEmail() + "@o2.pl");
+			lp.createAccountButtonClick();
 			
 			logger.info("Providing data to form");
 			caafp.mrRadioButtonClick();
