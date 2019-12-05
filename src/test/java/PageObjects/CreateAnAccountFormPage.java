@@ -53,13 +53,13 @@ public class CreateAnAccountFormPage extends BasePageObject {
 	@FindBy(css = "select[id='id_state']")
 	private WebElement state;
 	
-	@FindBy(css = "select[id='postcode']")
+	@FindBy(css = "input[id='postcode']")
 	private WebElement zipCode;
 	
-	@FindBy(css = "select[id='phone_mobile']")
+	@FindBy(css = "input[id='phone_mobile']")
 	private WebElement mobilePhone;
 	
-	@FindBy(css = "button[type='submitAccount']")
+	@FindBy(css = "button[name='submitAccount']")
 	private WebElement registerButton;
 	
 	public void mrRadioButtonClick(){

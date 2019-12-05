@@ -7,11 +7,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+import PageObjects.MyAccountPage;
 import java.io.IOException;
 import java.util.logging.Logger;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RegistrationTest extends BaseTest {
 	
@@ -20,6 +20,7 @@ public class RegistrationTest extends BaseTest {
 	private CreateAnAccountFormPage caafp;
 	private AuthenticationPage ap;
 	private Utilities utillities;
+	private MyAccountPage map;
 	
 	private String firstName = "Marian";
 	private String lastName = "Kowalski";
@@ -38,6 +39,7 @@ public class RegistrationTest extends BaseTest {
 			mp = new MainPage();
 			caafp = new CreateAnAccountFormPage();
 			ap = new AuthenticationPage();
+			map = new MyAccountPage();
 			
 			mp.signUpButtonClick();
 			assertEquals("AUTHENTICATION", ap.getAuthenticationHeader());
@@ -57,9 +59,11 @@ public class RegistrationTest extends BaseTest {
 			caafp.addressProvide("Boston Street, 54, ST Holding Company");
 			caafp.cityProvide("Chicago");
 			caafp.stateNameSelectFromList("Kansas");
-			caafp.zipCodeProvide(00011);
+			caafp.zipCodeProvide(99501);
 			caafp.mobilePhoneProvide(123456789);
 			caafp.registerButtonClick();
+			
+			assertTrue(map.getCustomerAccount().isDisplayed());
 		}
 		
 	@After
