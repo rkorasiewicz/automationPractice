@@ -11,7 +11,6 @@ import static org.junit.Assert.assertTrue;
 
 public class RegistrationTest extends BaseTest {
 	
-	private Utilities utilities;
 	private MyStorePage msp;
 	private CreateAnAccountFormPage caafp;
 	private LoginPage lp;

@@ -28,8 +28,8 @@ public class LoginPage extends BasePageObject {
 	@FindBy(css = "button[name='SubmitLogin']")
 	private WebElement signInButton;
 	
-	public void emailProvide(String str){
-		email.sendKeys(str);
+	public void emailProvide(String mail){
+		email.sendKeys(mail);
 	}
 	
 	public void createAccountButtonClick(){

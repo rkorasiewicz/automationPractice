@@ -13,10 +13,6 @@ import static org.junit.Assert.assertTrue;
 
 public class PurchaseTest extends BaseTest {
 	
-	private Utilities utilities;
-	private MyStorePage msp;
-	private CreateAnAccountFormPage caafp;
-	private LoginPage lp;
 	private MyAccountPage map;
 	private TShirtsPage tsp;
 	private OrderSummaryPage osump;

@@ -16,18 +16,11 @@ public class OrderPaymentConfirmationPage extends BasePageObject {
 	@FindBy(xpath = "(//div[@class='box'])/p/strong")
 	private WebElement confirmationOrderText;
 	
-	@FindBy(xpath = "//span[.='I confirm my order']")
-	private WebElement confirmOrderButton;
-	
 	@FindBy(css = "a[rel='nofollow']")
 	private WebElement signOutButton;
 	
 	public String getTextOfCartTitle(){
 		return cartTitle.getText();
-	}
-	
-	public void confirmOrderButtonClick(){
-		confirmOrderButton.click();
 	}
 	
 	public String getConfirmationOrderText(){

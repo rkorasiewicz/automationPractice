@@ -22,10 +22,7 @@ public class BaseTest {
 	private Utilities utilities;
 	public static WebDriver driver;
 	private static final Logger logger = Logger.getLogger(BaseTest.class.getName());
-	
-	public BaseTest() {
-	}
-	
+
 	public static WebDriver setUpBrowser() {
 		logger.info("Starting browser set up");
 		Utilities utilities = new Utilities();
