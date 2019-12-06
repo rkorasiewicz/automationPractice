@@ -28,12 +28,8 @@ public class PurchaseTest extends BaseTest {
 	private static final Logger logger = Logger.getLogger(PurchaseTest.class.getName());
 	
 	@Before
-	public void setUp(){
-		utilities = new Utilities();
-		driver = setUpBrowser();
-		driver.get(utilities.getMainPagePath());
-		Assert.assertEquals("My Store", driver.getTitle());
-		logger.info("Set up is done");
+	public void starting(){
+		setUpMainPage();
 	}
 	
 	@Test
@@ -48,38 +44,46 @@ public class PurchaseTest extends BaseTest {
 		opcp = new OrderPaymentConfirmationPage();
 		
 		logIn();
+		logger.info("Moving to T-shirts page");
 		map.tShirtsClick();
-		assertEquals("T-shirts - My Store", driver.getTitle());
 		
+		assertEquals("T-shirts - My Store", driver.getTitle());
 		tsp.addToCartButtonHoverAndClick();
 		assertTrue(tsp.getProductImageContainer().isDisplayed());
+		logger.info("Moving to Order summary page");
 		tsp.proceedButtonClick();
-		assertEquals("Order - My Store", driver.getTitle());
 		
+		assertEquals("Order - My Store", driver.getTitle());
 		assertTrue(osump.getTextOfCartTitle().contains("SHOPPING-CART SUMMARY"));
+		logger.info("Moving to Order address page");
 		osump.proceedButtonClick();
 		
 		assertEquals("ADDRESSES", oap.getTextOfCartTitle());
+		logger.info("Moving to Order shipping page");
 		oap.proceedButtonClick();
 		
 		assertEquals("SHIPPING", osp.getTextOfCartTitle());
 		osp.termsOfServiceTick();
+		logger.info("Moving to Order payment page");
 		osp.proceedButtonClick();
 		
 		assertEquals("PLEASE CHOOSE YOUR PAYMENT METHOD", opp.getTextOfCartTitle());
+		logger.info("Moving to Order payment summary page");
 		opp.payByBankWireClick();
 		
 		assertEquals("ORDER SUMMARY", opsp.getTextOfCartTitle());
+		logger.info("Moving to Order payment confirmation page");
 		opsp.confirmOrderButtonClick();
 		
 		assertEquals("ORDER CONFIRMATION", opcp.getTextOfCartTitle());
 		assertEquals("Your order on My Store is complete.", opcp.getConfirmationOrderText());
+		logger.info("Signing out");
 		opcp.signOutButtonClick();
 	}
 		
 	@After
 	public void cleanUp(){
-		logger.info("Test is done");
+		logger.info("Test is done. Quiting browser");
 		driver.quit();
 	}
 }

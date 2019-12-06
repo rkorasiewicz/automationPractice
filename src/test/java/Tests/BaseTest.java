@@ -4,6 +4,7 @@ package Tests;
 import PageObjects.LoginPage;
 import PageObjects.MyAccountPage;
 import PageObjects.MyStorePage;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Random;
@@ -18,6 +19,7 @@ public class BaseTest {
 	private LoginPage lp;
 	private MyAccountPage map;
 	private MyStorePage msp;
+	private Utilities utilities;
 	public static WebDriver driver;
 	private static final Logger logger = Logger.getLogger(BaseTest.class.getName());
 	
@@ -29,25 +31,34 @@ public class BaseTest {
 		Utilities utilities = new Utilities();
 		System.setProperty("webdriver.chrome.driver", utilities.getChromePath());
 		driver = new ChromeDriver();
+		logger.info("Open browser");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		logger.info("Browser has been set up");
+		logger.info("Browser has been opened and set up");
 		return driver;
 	}
 	
-	public String getRandomEmail() {
-		logger.info("Generating random email base");
-		String RANDOMCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		StringBuilder salt = new StringBuilder();
-		Random rnd = new Random();
-		while (salt.length() < 10) { // length of the random string.
-			int index = (int) (rnd.nextFloat() * RANDOMCHARS.length());
-			salt.append(RANDOMCHARS.charAt(index));
-		}
-		String randomEmail = salt.toString();
-		logger.info("Random email base has been generated");
-		return randomEmail;
+	public void setUpMainPage() {
+		utilities = new Utilities();
+		driver = setUpBrowser();
+		driver.get(utilities.getMainPagePath());
+		Assert.assertEquals("My Store", driver.getTitle());
+		logger.info("Destination page has been landed");
 	}
+		
+		public String getRandomEmail () {
+			logger.info("Generating random email base");
+			String RANDOMCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+			StringBuilder salt = new StringBuilder();
+			Random rnd = new Random();
+			while (salt.length() < 10) { // length of the random string.
+				int index = (int) (rnd.nextFloat() * RANDOMCHARS.length());
+				salt.append(RANDOMCHARS.charAt(index));
+			}
+			String randomEmail = salt.toString();
+			logger.info("Random email base has been generated");
+			return randomEmail;
+		}
 	
 	public void logIn(){
 		lp = new LoginPage();
@@ -66,6 +77,7 @@ public class BaseTest {
 		logger.info("Moving to 'my account' page");
 		assertTrue(map.getCustomerAccount().isDisplayed());
 		assertEquals("My account - My Store", driver.getTitle());
+		logger.info("User has been signed");
 	}
 }
 
