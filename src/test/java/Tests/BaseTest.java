@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BaseTest {
@@ -53,7 +54,9 @@ public class BaseTest {
 		map = new MyAccountPage();
 		msp = new MyStorePage();
 		
+		logger.info("Signing in");
 		msp.signUpButtonClick();
+		assertEquals("Login - My Store", driver.getTitle());
 		
 		logger.info("Providing email and password for logging");
 		lp.emailForLoginProvide("dsoifjglkdsfjlg@o2.pl");
@@ -62,6 +65,7 @@ public class BaseTest {
 		
 		logger.info("Moving to 'my account' page");
 		assertTrue(map.getCustomerAccount().isDisplayed());
+		assertEquals("My account - My Store", driver.getTitle());
 	}
 }
 

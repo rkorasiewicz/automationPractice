@@ -43,8 +43,8 @@ public class TShirtsPage extends BasePageObject {
 		proceedButton.click();
 	}
 	
-	public void getTextOfCartTitle(){
-		cartTitle.getText();
+	public WebElement getProductImageContainer() {
+		return productImageContainer;
 	}
 	
 }

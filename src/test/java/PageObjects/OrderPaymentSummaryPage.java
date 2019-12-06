@@ -16,8 +16,8 @@ public class OrderPaymentSummaryPage extends BasePageObject {
 	@FindBy(xpath = "//span[.='I confirm my order']")
 	private WebElement confirmOrderButton;
 	
-	public void getTextOfCartTitle(){
-		cartTitle.getText();
+	public String getTextOfCartTitle(){
+		return cartTitle.getText();
 	}
 	
 	public void confirmOrderButtonClick(){

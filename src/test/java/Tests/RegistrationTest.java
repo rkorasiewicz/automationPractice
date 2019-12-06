@@ -74,6 +74,6 @@ public class RegistrationTest extends BaseTest {
 	@After
 	public void cleanUp(){
 		logger.info("Test is done");
-		//driver.quit();
+		driver.quit();
 	}
 }

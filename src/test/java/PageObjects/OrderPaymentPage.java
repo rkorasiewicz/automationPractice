@@ -16,8 +16,8 @@ public class OrderPaymentPage extends BasePageObject {
 	@FindBy(css = "a[title='Pay by bank wire']")
 	private WebElement payByBankWire;
 	
-	public void getTextOfCartTitle(){
-		cartTitle.getText();
+	public String getTextOfCartTitle(){
+		return cartTitle.getText();
 	}
 	
 	public void payByBankWireClick(){

@@ -22,16 +22,16 @@ public class OrderPaymentConfirmationPage extends BasePageObject {
 	@FindBy(css = "a[rel='nofollow']")
 	private WebElement signOutButton;
 	
-	public void getTextOfCartTitle(){
-		cartTitle.getText();
+	public String getTextOfCartTitle(){
+		return cartTitle.getText();
 	}
 	
 	public void confirmOrderButtonClick(){
 		confirmOrderButton.click();
 	}
 	
-	public void getConfirmationOrderText(){
-		confirmationOrderText.getText();
+	public String getConfirmationOrderText(){
+		return confirmationOrderText.getText();
 	}
 	
 	public void signOutButtonClick(){

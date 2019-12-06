@@ -17,8 +17,8 @@ public class OrderSummaryPage extends BasePageObject {
 	@FindBy(xpath = "//span[.='Proceed to checkout']")
 	private WebElement proceedButton;
 	
-	public void getTextOfCartTitle(){
-		cartTitle.getText();
+	public String getTextOfCartTitle(){
+		return cartTitle.getText();
 	}
 	
 	public void proceedButtonClick(){

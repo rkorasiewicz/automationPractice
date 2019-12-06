@@ -19,8 +19,8 @@ public class OrderShippingPage extends BasePageObject {
 	@FindBy(css = "button[name='processCarrier']")
 	private WebElement proceedButton;
 	
-	public void getTextOfCartTitle(){
-		cartTitle.getText();
+	public String getTextOfCartTitle(){
+		return cartTitle.getText();
 	}
 	
 	public void proceedButtonClick(){
