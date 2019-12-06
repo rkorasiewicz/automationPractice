@@ -1,14 +1,22 @@
 package Tests;
 
 
+import PageObjects.LoginPage;
+import PageObjects.MyAccountPage;
+import PageObjects.MyStorePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import static org.junit.Assert.assertTrue;
+
 public class BaseTest {
 	
+	private LoginPage lp;
+	private MyAccountPage map;
+	private MyStorePage msp;
 	public static WebDriver driver;
 	private static final Logger logger = Logger.getLogger(BaseTest.class.getName());
 	
@@ -38,6 +46,22 @@ public class BaseTest {
 		String randomEmail = salt.toString();
 		logger.info("Random email base has been generated");
 		return randomEmail;
+	}
+	
+	public void logIn(){
+		lp = new LoginPage();
+		map = new MyAccountPage();
+		msp = new MyStorePage();
+		
+		msp.signUpButtonClick();
+		
+		logger.info("Providing email and password for logging");
+		lp.emailForLoginProvide("dsoifjglkdsfjlg@o2.pl");
+		lp.passwordForLoginProvide("mPEpyDfU9@MCSnL");
+		lp.signInButtonClick();
+		
+		logger.info("Moving to 'my account' page");
+		assertTrue(map.getCustomerAccount().isDisplayed());
 	}
 }
 
