@@ -30,7 +30,7 @@ public class ScreenshotTest extends BaseTest {
 	
 	@Test
 	public void takeScreenshot() throws IOException {
-		Utilities.takeScreenShoot(driver);
+		Utilities.takeScreenShoot(driver, "testScreenshot");
 	}
 		
 	@After

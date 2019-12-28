@@ -5,9 +5,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class RegistrationTest extends BaseTest {
 	
@@ -24,7 +26,7 @@ public class RegistrationTest extends BaseTest {
 	}
 	
 	@Test
-	public void verifyUserRegistration() {
+	public void verifyUserRegistration() throws IOException {
 		msp = new MyStorePage();
 		caafp = new CreateAnAccountFormPage();
 		lp = new LoginPage();
@@ -43,22 +45,28 @@ public class RegistrationTest extends BaseTest {
 		lp.createAccountButtonClick();
 			
 		logger.info("Providing data to form");
-		caafp.mrRadioButtonClick();
-		caafp.firstNameProvide(firstName);
-		caafp.lastNameProvide(lastName);
-		caafp.passwordProvide("testPassword");
-		caafp.dayOfBirthSelect(2);
-		caafp.monthOfBirthSelect(5);
-		caafp.yearOfBirthSelect(1988);
-		caafp.addressFirstNameProvide(firstName);
-		caafp.addressLastNameProvide(lastName);
-		caafp.addressProvide("Boston Street, 54, ST Holding Company");
-		caafp.cityProvide("Chicago");
-		caafp.stateNameSelectFromList("Kansas");
-		caafp.zipCodeProvide(99501);
-		caafp.mobilePhoneProvide(123456789);
-		logger.info("Data has been provided");
-		caafp.registerButtonClick();
+		try {
+			caafp.mrRadioButtonClick();
+			caafp.firstNameProvide(firstName);
+			caafp.lastNameProvide(lastName);
+			caafp.passwordProvide("testPassword");
+			caafp.dayOfBirthSelect(2);
+			caafp.monthOfBirthSelect(5);
+			caafp.yearOfBirthSelect(1988);
+			caafp.addressFirstNameProvide(firstName);
+			caafp.addressLastNameProvide(lastName);
+			caafp.addressProvide("Boston Street, 54, ST Holding Company");
+			caafp.cityProvide("Chicago");
+			caafp.stateNameSelectFromList("Kansas");
+			caafp.zipCodeProvide(99501);
+			caafp.mobilePhoneProvide(123456789);
+			logger.info("Data has been provided");
+			//caafp.registerButtonClick();
+			lp.createAccountButtonClick();
+		}catch (Exception e){
+			Utilities.takeScreenShoot(driver, getClass().getName());
+			fail();
+		}
 			
 		logger.info("Moving to My account page");
 		assertTrue(map.getCustomerAccount().isDisplayed());
