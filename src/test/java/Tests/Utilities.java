@@ -14,6 +14,10 @@ public class Utilities {
 	private static final String CHROME_PATH = "resources\\chromedriver.exe";
 	private static final String SCREEN_PATH  = "resources\\screenshots\\";
 	
+	public static String getScreenPath() {
+		return SCREEN_PATH;
+	}
+	
 	public static String getChromePath() {
 		return CHROME_PATH;
 	}

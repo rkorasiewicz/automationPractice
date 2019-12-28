@@ -2,14 +2,15 @@ package Tests;
 
 import PageObjects.*;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class ScreenshotTest extends BaseTest {
 	
@@ -29,8 +30,21 @@ public class ScreenshotTest extends BaseTest {
 	}
 	
 	@Test
-	public void takeScreenshot() throws IOException {
-		Utilities.takeScreenShoot(driver, "testScreenshot");
+	public void takeScreenshot() throws IOException{
+		String testScreen = "test_screenshot";
+		File filePathString = new File(Utilities.getScreenPath()+testScreen+".png");
+		logger.info("Screenshot path is " + filePathString +"\n" + "Deleting previous screenshot if exists");
+		if (filePathString.isFile()){
+			filePathString.delete();
+			assertTrue(!filePathString.exists());
+		}
+		
+		logger.info("Creating screenshot");
+		Utilities.takeScreenShoot(driver, testScreen);
+		if (!filePathString.isFile()){
+			fail("Screenshot hasn't been created");
+		}
+		logger.info("Screenshot has been created");
 	}
 		
 	@After

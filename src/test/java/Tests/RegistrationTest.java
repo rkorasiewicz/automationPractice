@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class RegistrationTest extends BaseTest {
 	
@@ -61,11 +60,9 @@ public class RegistrationTest extends BaseTest {
 			caafp.zipCodeProvide(99501);
 			caafp.mobilePhoneProvide(123456789);
 			logger.info("Data has been provided");
-			//caafp.registerButtonClick();
-			lp.createAccountButtonClick();
+			caafp.registerButtonClick();
 		}catch (Exception e){
 			Utilities.takeScreenShoot(driver, getClass().getName());
-			fail();
 		}
 			
 		logger.info("Moving to My account page");
