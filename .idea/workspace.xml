@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf6463e-d899-44d3-bfbf-449d742e0b6d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
@@ -93,7 +90,7 @@
     <session id="565475931">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.16" value="3" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.opened" value="4" />
@@ -149,7 +146,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="142">
               <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
             </state>
           </provider>
@@ -231,8 +228,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="368" />
-    <option name="y" value="-13" />
+    <option name="x" value="367" />
+    <option name="y" value="-14" />
     <option name="width" value="1295" />
     <option name="height" value="790" />
   </component>
@@ -297,8 +294,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575642294492" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575642314501" />
+    <property name="last_opened_file_path" value="C:/phptravels" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RecentsManager">
@@ -394,9 +391,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PurchaseTest_purchaseOneProduct - 2019.12.06 at 13h 43m 40s.xml">
-      <configuration name="PurchaseTest.purchaseOneProduct" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Tests_in_Automation_Practice - 2019.12.06 at 14h 01m 29s.xml">
       <configuration name="Tests in Automation_Practice" configurationId="JUnit" />
     </history-entry>
@@ -424,12 +418,14 @@
     <history-entry file="Tests_in_Automation_Practice - 2019.12.06 at 15h 18m 43s.xml">
       <configuration name="Tests in Automation_Practice" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Tests_in_Automation_Practice - 2019.12.06 at 15h 25m 12s.xml">
+      <configuration name="Tests in Automation_Practice" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22281879" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22281879" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -634,7 +630,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="142">
           <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
         </state>
       </provider>
