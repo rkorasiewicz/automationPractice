@@ -1,7 +1,6 @@
 target/
 */target/*
 */target/**
-resources/screenshots/
 .idea/workspace.xml
 .idea/sonarlint
 
